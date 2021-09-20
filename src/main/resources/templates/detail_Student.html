@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Detail Student</title>
+<!-- CSS only -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container my-3">
+		<nav
+			class="navbar navbar-expand-sm navbar-light bg-light justify-content-center">
+			<ul>
+				<li class="nav-item">
+					<a
+						class="nav-link"
+						href="/students">Student Management System</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+
+	<div class="container">
+		<table
+			class="table table-hover"
+			th:object=${student}>
+			<thead class="table table-dark">
+				<tr>
+					<th scope="col">First Name</th>
+					<th scope="col">Last Name</th>
+					<th scope="col">Email</th>
+					<th scope="col">Date Of Birth</th>
+					<th scope="col">Years</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td th:text="*{firstName}"></td>
+					<td th:text="*{lastName}"></td>
+					<td th:text="*{email}"></td>
+					<td th:text="*{dateOfBirth}"></td>
+					<td th:text="*{studentYear}"></td>
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Student Management System</title>
+<!-- CSS only -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+	crossorigin="anonymous"
+>
+<title>UP DATE STUDENT</title>
+</head>
+<body>
+	<div class="container my-3">
+		<nav
+			class="navbar navbar-expand-sm navbar-light bg-light justify-content-center"
+		>
+			<ul>
+				<li class="nav-item"><a
+						class="nav-link"
+						href="/students"
+					>Student Management System</a></li>
+			</ul>
+		</nav>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class="text-center">Up DateStudent</h1>
+				<div class="card-body">
+					<form
+						th:action="@{/students/{id}(id=${student.id})}"
+						th:object="${student}"
+						method="POST"
+					>
+
+						<div class="form-group">
+
+							<!-- First Name -->
+							<label>Student First Name</label>
+							<input
+								class="form-control"
+								type="text"
+								name="firstName"
+								placeholder="enter student first name"
+								th:field="*{firstName}"
+							/>
+
+							<!-- Last Name -->
+							<label>Student last Name</label>
+							<input
+								class="form-control"
+								type="text"
+								name="lastName"
+								placeholder="enter student last name"
+								th:field="*{lastName}"
+							/>
+
+							<!-- Email -->
+							<label>Student Email</label>
+							<input
+								class="form-control"
+								type="email"
+								name="email"
+								placeholder="enter student email"
+								th:field="*{email}"
+							/>
+							
+							<!-- Birth -->
+							<label>Date Of Birth</label>
+							<input
+								class="form-control"
+								type="date"
+								name="dateOfBirth"
+								placeholder="enter date of birth"
+								th:field="*{dateOfBirth}"
+							/>
+
+							<!-- BTN -->
+							<div class="footer-boody">
+								<button class="btn btn-primary">Submit</button>
+
+							</div>
+
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

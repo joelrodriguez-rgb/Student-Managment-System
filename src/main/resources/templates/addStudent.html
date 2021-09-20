@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xlmns:th="http://www.thymeleaf.com">
+<head>
+<meta charset="UTF-8">
+<!-- CSS only -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+	crossorigin="anonymous"
+>
+<title>ADD NEW STUDENT</title>
+</head>
+
+<div class="container my-3">
+	<nav
+		class="navbar navbar-expand-sm navbar-light bg-light justify-content-center"
+	>
+		<ul>
+			<li class="nav-item"><a
+					class="nav-link"
+					href="/students"
+				>Student Management System</a></li>
+		</ul>
+	</nav>
+</div>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class="text-center">Create New Student</h1>
+				<div class="card-body">
+					<form
+						th:action="@{/students}"
+						th:object="${student}"
+						method="POST"
+					>
+
+						<div class="form-group">
+
+							<!-- First Name -->
+							<label>Student First Name</label>
+							<input
+								class="form-control"
+								type="text"
+								name="firstName"
+								placeholder="enter student first name"
+								th:field="*{firstName}"
+							/>
+							<div th:if = "${#fields.hasErrors('firstName')}" th:errors = "*{firstName}"></div>
+
+							<!-- Last Name -->
+							<label>Student last Name</label>
+							<input
+								class="form-control"
+								type="text"
+								name="lastName"
+								placeholder="enter student last name"
+								th:field="*{lastName}"
+							/>
+							<div th:if = "${#fields.hasErrors('lastName')}" th:errors = "*{lastName}"></div>
+							
+
+							<!-- Email -->
+							<label>Student Email</label>
+							<input
+								class="form-control"
+								type="email"
+								name="email"
+								placeholder="enter student email"
+								th:field="*{email}"
+							/>
+							<div th:if = "${#fields.hasErrors('email')}" th:errors = "*{email}"></div>
+							
+
+							<!-- Birth Day -->
+							<label>Birth day</label>
+							<input
+								class="form-control"
+								type="date"
+								name="dateOfBirth"
+								placeholder="enter birth"
+								th:field="*{dateOfBirth}"
+							/>
+							<div th:if = "${#fields.hasErrors('dateOfBirth')}" th:errors = "*{dateOfBirth}"></div>
+
+							<!-- BTN -->
+							<div class="footer-boody">
+								<button class="btn btn-primary">Submit</button>
+
+							</div>
+
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
