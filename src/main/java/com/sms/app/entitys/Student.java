@@ -26,19 +26,22 @@ public class Student {
 	private Long id;
 
 	@NotBlank
+	@NotEmpty
 	@Column(name = "first_name", nullable = false)
 	private String firstName;
 
 	@NotBlank
+	@NotEmpty
 	@Column(name = "last_name", nullable = false)
 	private String lastName;
 
 	@Email
+	@NotEmpty
 	@Column(name = "email")
 	private String email;
 
-	@NotEmpty
 	@Column(name = "day_birth")
+	@NotBlank
 	private String dateOfBirth;
 
 	@Column(name = "student_year")
@@ -48,7 +51,7 @@ public class Student {
 	}
 
 	public Student(@NotEmpty String firstName, @NotEmpty String lastName, @Email String email,
-			@NotEmpty String dateOfBirth) {
+			@NotBlank String dateOfBirth) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -132,6 +135,7 @@ public class Student {
 		Period period = Period.between(birth, localDateNow);
 
 		return (Integer) period.getYears();
+
 	}
 
 }
