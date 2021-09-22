@@ -7,20 +7,19 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
-	crossorigin="anonymous"
->
+	crossorigin="anonymous">
 <title>ADD NEW STUDENT</title>
 </head>
 
 <div class="container my-3">
 	<nav
-		class="navbar navbar-expand-sm navbar-light bg-light justify-content-center"
-	>
+		class="navbar navbar-expand-sm navbar-light bg-light justify-content-center">
 		<ul>
-			<li class="nav-item"><a
+			<li class="nav-item">
+				<a
 					class="nav-link"
-					href="/students"
-				>Student Management System</a></li>
+					href="/students">Student Management System</a>
+			</li>
 		</ul>
 	</nav>
 </div>
@@ -34,8 +33,7 @@
 					<form
 						th:action="@{/students}"
 						th:object="${student}"
-						method="POST"
-					>
+						method="POST">
 
 						<div class="form-group">
 
@@ -46,9 +44,11 @@
 								type="text"
 								name="firstName"
 								placeholder="enter student first name"
-								th:field="*{firstName}"
-							/>
-							<div th:if = "${#fields.hasErrors('firstName')}" th:errors = "*{firstName}"></div>
+								th:field="*{firstName}" />
+							<div
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('firstName')}"
+								th:errors="*{firstName}"></div>
 
 							<!-- Last Name -->
 							<label>Student last Name</label>
@@ -57,10 +57,12 @@
 								type="text"
 								name="lastName"
 								placeholder="enter student last name"
-								th:field="*{lastName}"
-							/>
-							<div th:if = "${#fields.hasErrors('lastName')}" th:errors = "*{lastName}"></div>
-							
+								th:field="*{lastName}" />
+							<div
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('lastName')}"
+								th:errors="*{lastName}"></div>
+
 
 							<!-- Email -->
 							<label>Student Email</label>
@@ -69,21 +71,25 @@
 								type="email"
 								name="email"
 								placeholder="enter student email"
-								th:field="*{email}"
-							/>
-							<div th:if = "${#fields.hasErrors('email')}" th:errors = "*{email}"></div>
-							
+								th:field="*{email}" />
+							<div
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('email')}"
+								th:errors="*{email}"></div>
+
 
 							<!-- Birth Day -->
 							<label>Birth day</label>
 							<input
 								class="form-control"
-								type="date"
+								type="text"
 								name="dateOfBirth"
-								placeholder="enter birth"
-								th:field="*{dateOfBirth}"
-							/>
-							<div th:if = "${#fields.hasErrors('dateOfBirth')}" th:errors = "*{dateOfBirth}"></div>
+								placeholder="enter birth format dd/mm/yyyy"
+								th:field="*{dateOfBirth}" />
+							<div
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('dateOfBirth')}"
+								th:errors="*{dateOfBirth}"></div>
 
 							<!-- BTN -->
 							<div class="footer-boody">

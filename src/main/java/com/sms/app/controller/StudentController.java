@@ -30,7 +30,6 @@ public class StudentController {
 	@GetMapping("/students")
 	public String listStudents(Model model) {
 
-		
 		model.addAttribute("students", studentService.getAllStudents());
 		return "students";
 	}
@@ -73,10 +72,10 @@ public class StudentController {
 
 	// recive los datos del nuevo estudiante y los guarda
 	@PostMapping("/students")
-	public String saveStudent(@Valid @ModelAttribute("student") Student student, BindingResult result) {
+	public String saveStudent(@ModelAttribute("student") @Valid Student student, BindingResult result) {
 
 		if (result.hasErrors()) {
-			return "redirect:/students/addStudent";
+			return "addStudent";
 		}
 
 		studentService.saveStudent(student);
@@ -86,7 +85,7 @@ public class StudentController {
 	// actualiza los datos del estudiante
 	// recive el id por la ruta
 	@PostMapping("/students/{id}")
-	public String updateStudent(@PathVariable Long id, @Valid @ModelAttribute("student") Student student) {
+	public String updateStudent(@PathVariable Long id, @ModelAttribute("student") Student student) {
 
 		Student existingStudent = studentService.getStudentById(id);
 		existingStudent.setId(id);
