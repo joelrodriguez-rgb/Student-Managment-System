@@ -1,5 +1,7 @@
 package com.sms.app.controller;
 
+import java.time.LocalDate;
+
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -74,7 +76,12 @@ public class StudentController {
 	@PostMapping("/students")
 	public String saveStudent(@ModelAttribute("student") @Valid Student student, BindingResult result) {
 
-		if (result.hasErrors()) {
+		// Verifico que la fecha de nacimiento que se ingresa sea anterior a la fecha
+		// actual
+		LocalDate birth = LocalDate.parse(student.getDateOfBirth());
+		LocalDate localDateNow = LocalDate.now();
+
+		if (birth.isAfter(localDateNow) || result.hasErrors()) {
 			return "addStudent";
 		}
 
