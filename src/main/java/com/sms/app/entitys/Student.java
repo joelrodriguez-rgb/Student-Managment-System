@@ -2,7 +2,6 @@ package com.sms.app.entitys;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +12,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -25,24 +25,27 @@ public class Student {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotBlank
 	@NotEmpty
+	@NotBlank(message = "el nombre no puede estar en blanco")
 	@Column(name = "first_name", nullable = false)
 	private String firstName;
 
-	@NotBlank
 	@NotEmpty
+	@NotBlank(message = "el apellido no puede estar en blanco")
 	@Column(name = "last_name", nullable = false)
 	private String lastName;
 
 	@Email
 	@NotEmpty
+	@NotBlank(message = "el email no puede estar en blanco")
 	@Column(name = "email")
 	private String email;
 
 	@Column(name = "day_birth")
-	@NotBlank
-	private String dateOfBirth;
+	@NotNull
+	@Past(message = "la fecha debe ser anterior a la anctual")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate dateOfBirth;
 
 	@Column(name = "student_year")
 	private Integer studentYear;
@@ -51,7 +54,7 @@ public class Student {
 	}
 
 	public Student(@NotEmpty String firstName, @NotEmpty String lastName, @Email String email,
-			@NotBlank String dateOfBirth) {
+			@NotNull @Past LocalDate dateOfBirth) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -101,11 +104,11 @@ public class Student {
 	}
 
 	////////// BIRHT////////////
-	public String getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(String dateOfBirth) {
+	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.studentYear = parseBirth(dateOfBirth);
 		this.dateOfBirth = dateOfBirth;
 	}
@@ -127,12 +130,11 @@ public class Student {
 	 *         metodo auxiliar, convierte el String dateOfBirth en un LocalDate para
 	 *         luego poder calcular la edad
 	 */
-	private static Integer parseBirth(String dateOfBirth) {
+	private static Integer parseBirth(LocalDate dateOfBirth) {
 
-		LocalDate birth = LocalDate.parse(dateOfBirth);
 		LocalDate localDateNow = LocalDate.now();
 
-		Period period = Period.between(birth, localDateNow);
+		Period period = Period.between(dateOfBirth, localDateNow);
 
 		return (Integer) period.getYears();
 

@@ -76,12 +76,7 @@ public class StudentController {
 	@PostMapping("/students")
 	public String saveStudent(@ModelAttribute("student") @Valid Student student, BindingResult result) {
 
-		// Verifico que la fecha de nacimiento que se ingresa sea anterior a la fecha
-		// actual
-		LocalDate birth = LocalDate.parse(student.getDateOfBirth());
-		LocalDate localDateNow = LocalDate.now();
-
-		if (birth.isAfter(localDateNow) || result.hasErrors()) {
+		if (result.hasErrors()) {
 			return "addStudent";
 		}
 
